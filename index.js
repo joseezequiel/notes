@@ -56,7 +56,7 @@ let notes = [
 // El código de estado de la respuesta predeterminado es 200.
 // manejador de eventos: raiz
 app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
+  response.send('<h1>Hello World! Esto es un mensaje desde el backend.</h1>')
 })
 
 // Express establece automáticamente el header Content-Type con el valor apropiado de application/json.
@@ -115,6 +115,7 @@ app.post('/api/notes', (request, response) => {
     content: body.content,
     important: body.important || false,
     date: new Date(),
+    
     id: generateId(),
   }
 
@@ -124,6 +125,7 @@ app.post('/api/notes', (request, response) => {
 })
 
 app.use(unknownEndpoint)
+app.use(express.static('build'))
 
 // El servidor http escucha las solicitudes HTTP enviadas al puerto 3001:
 // const PORT = 3001
